@@ -16,21 +16,35 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            background: #0a0a0f;
             color: white;
             overflow-x: hidden;
+            cursor: default;
         }
 
-        /* Animowane kule w tle */
+        /* Interaktywne światło za myszką */
+        #cursor-blur {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            transition: 0.1s ease-out;
+        }
+
+        /* Statyczne kule w tle */
         .circle {
             position: fixed;
             border-radius: 50%;
             filter: blur(80px);
-            z-index: -1;
+            z-index: -2;
             animation: move 20s infinite alternate;
         }
-        .circle-1 { width: 400px; height: 400px; background: rgba(255, 0, 150, 0.3); top: -10%; left: -5%; }
-        .circle-2 { width: 500px; height: 500px; background: rgba(0, 200, 255, 0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
+        .circle-1 { width: 400px; height: 400px; background: rgba(255, 0, 150, 0.2); top: -10%; left: -5%; }
+        .circle-2 { width: 500px; height: 500px; background: rgba(0, 200, 255, 0.2); bottom: -10%; right: -5%; animation-delay: -5s; }
 
         @keyframes move { from { transform: translate(0, 0); } to { transform: translate(100px, 50px); } }
 
@@ -55,7 +69,7 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 40px;
@@ -63,8 +77,8 @@
             margin-top: 20px;
         }
 
-        h1, h2 { font-size: 3rem; margin-bottom: 20px; }
-        .highlight { color: #00c8ff; }
+        h1, h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px; }
+        .highlight { color: #00c8ff; text-shadow: 0 0 15px rgba(0, 200, 255, 0.3); }
 
         /* Plany - Cennik */
         .pricing-grid {
@@ -74,37 +88,40 @@
             margin-top: 40px;
         }
         .plan {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 30px;
             padding: 40px;
             text-align: center;
-            transition: 0.3s;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .plan:hover { transform: scale(1.05); border-color: #00c8ff; background: rgba(255, 255, 255, 0.07); }
+        .plan:hover { transform: translateY(-10px); border-color: #00c8ff; background: rgba(255, 255, 255, 0.05); }
         .plan h3 { font-size: 1.8rem; margin-bottom: 10px; color: #00c8ff; }
         .price { font-size: 2.5rem; font-weight: 800; margin: 20px 0; }
-        .features-list { list-style: none; margin-bottom: 30px; text-align: left; opacity: 0.8; }
-        .features-list li { margin-bottom: 10px; }
-        .features-list li::before { content: "✓ "; color: #00c8ff; }
+        .features-list { list-style: none; margin-bottom: 30px; text-align: left; opacity: 0.8; font-size: 0.95rem; }
+        .features-list li { margin-bottom: 12px; }
+        .features-list li::before { content: "✦ "; color: #00c8ff; }
 
         .cta-btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 12px 35px;
             background: #fff;
             color: #000;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
-        .cta-btn:hover { background: #00c8ff; color: #fff; box-shadow: 0 0 20px rgba(0, 200, 255, 0.5); }
+        .cta-btn:hover { background: #00c8ff; color: #fff; box-shadow: 0 0 20px rgba(0, 200, 255, 0.5); transform: scale(1.05); }
 
-        footer { text-align: center; padding: 60px 0; opacity: 0.5; font-size: 0.9rem; }
+        footer { text-align: center; padding: 60px 0; opacity: 0.4; font-size: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 50px; }
     </style>
 </head>
 <body>
 
+    <div id="cursor-blur"></div>
     <div class="circle circle-1"></div>
     <div class="circle circle-2"></div>
 
@@ -122,9 +139,9 @@
         <section id="home" class="page active">
             <div class="glass-card" style="text-align: center;">
                 <h1>Lion15 <span class="highlight">Studio</span></h1>
-                <p style="font-size: 1.2rem; opacity: 0.8;">Projektowanie nowoczesnych stron internetowych, które robią różnicę.</p>
+                <p style="font-size: 1.2rem; opacity: 0.8; max-width: 600px; margin: 0 auto;">Tworzę nowoczesne strony internetowe, które przyciągają uwagę i budują zaufanie Twoich klientów.</p>
                 <br><br>
-                <button class="cta-btn" onclick="showPage('pricing')">Sprawdź ofertę</button>
+                <button class="cta-btn" onclick="showPage('pricing')">Sprawdź moje plany</button>
             </div>
         </section>
 
@@ -132,80 +149,82 @@
             <div class="glass-card">
                 <h2>Kilka słów <span class="highlight">o mnie</span></h2>
                 <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.9;">
-                    Cześć! Jestem Lion15. Moja pasja to kodowanie i design. Specjalizuję się w tworzeniu stron, które nie tylko działają bezbłędnie, ale też wyglądają obłędnie. <br><br>
-                    Wierzę, że każda marka zasługuje na unikalną tożsamość w sieci. Dlatego w moich projektach stawiam na nowoczesne technologie, szybkość działania i estetykę premium. Nie robię "zwykłych" stron – robię projekty, które zapadają w pamięć.
+                    Cześć! Jestem <strong>Lion15</strong>. Specjalizuję się w projektowaniu nowoczesnych stron internetowych. 
+                    Moja filozofia jest prosta: strona musi być nie tylko funkcjonalna, ale przede wszystkim **piękna**. <br><br>
+                    Wykorzystuję najnowsze trendy, takie jak Glassmorphism i interaktywne animacje, aby każda witryna, którą stworzę, wyróżniała się na tle konkurencji. Stawiam na czysty kod, szybkość i unikalny design.
                 </p>
             </div>
         </section>
 
         <section id="pricing" class="page">
-            <h2 style="text-align: center;">Wybierz swój <span class="highlight">plan</span></h2>
+            <h2 style="text-align: center; margin-bottom: 10px;">Plany <span class="highlight">stron</span></h2>
+            <p style="text-align: center; opacity: 0.6; margin-bottom: 40px;">Wybierz rozwiązanie idealne dla Twoich potrzeb</p>
             <div class="pricing-grid">
                 <div class="plan">
                     <h3>Landing Page</h3>
-                    <div class="price">od 10 zł do 500 zł</div>
+                    <div class="price">od 10zł</div>
                     <ul class="features-list">
-                        <li>cena zależy od zaawansowania strony</li>
-                        <li>One-page design</li>
-                        <li>Pełna responsywność</li>
-                        <li>Podstawowe SEO</li>
-                        <li>Integracja Social Media</li>
+                        <li>Nowoczesny design (One-page)</li>
+                        <li>Pełna responsywność (Mobile)</li>
+                        <li>Podstawowa optymalizacja SEO</li>
+                        <li>Formularz kontaktowy</li>
                     </ul>
-                    <a href="mailto:lion15.official1@gmail.com" class="cta-btn">Wybieram</a>
+                    <button class="cta-btn" onclick="showPage('contact')">Zamawiam</button>
                 </div>
-                <div class="plan" style="border-color: #00c8ff;">
+                <div class="plan" style="border-color: rgba(0, 200, 255, 0.4); background: rgba(0, 200, 255, 0.03);">
                     <h3>Biznes PRO</h3>
-                    <div class="price">od 300 zł do 1000 zł</div>
+                    <div class="price">od 100zł</div>
                     <ul class="features-list">
-                        <li>cena zależy od zaawansowania strony</li>
                         <li>Wielostronicowa witryna</li>
-                        <li>Zaawansowane animacje</li>
-                        <li>System zarządzania (CMS)</li>
-                        <li>Optymalizacja szybkości</li>
+                        <li>Zaawansowane efekty wizualne</li>
+                        <li>System zarządzania treścią</li>
+                        <li>Szybkość ładowania < 1s</li>
                     </ul>
-                    <a href="mailto:lion15.official1@gmail.com" class="cta-btn">Wybieram</a>
+                    <button class="cta-btn" onclick="showPage('contact')">Zamawiam</button>
                 </div>
                 <div class="plan">
-                    <h3>Biznes Pro+</h3>
-                    <div class="price">od 600 zł do 2000 zł</div>
+                    <h3>E-Commerce</h3>
+                    <div class="price">do ustalenia</div>
                     <ul class="features-list">
-                        <li>cena zależy od zaawansowania strony</li>
                         <li>Sklep internetowy</li>
-                        <li>Płatności online</li>
-                        <li>Panel administratora</li>
-                        <li>Wsparcie techniczne</li>
+                        <li>Płatności</li>
+                        <li>Panel zarządzania produktami</li>
+                        <li>Szkolenie z obsługi</li>
                     </ul>
-                    <a href="mailto:lion15.official1@gmail.com" class="cta-btn">Wybieram</a>
+                    <button class="cta-btn" onclick="showPage('contact')">Zamawiam</button>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="page">
             <div class="glass-card" style="text-align: center;">
-                <h2>Pogadajmy!</h2>
-                <p>Napisz do mnie na maila:</p>
-                <br>
-                <a href="mailto:lion15.official1@gmail.com" class="highlight" style="font-size: 2rem; text-decoration: none; font-weight: 800;">lion15.official1@gmail.com</a>
+                <h2>Zrealizujmy <span class="highlight">Twój projekt</span></h2>
+                <p style="margin-bottom: 30px;">Wyślij zapytanie, a odpowiem w ciągu 24h.</p>
+                <a href="mailto:lion15.official1@gmail.com" class="highlight" style="font-size: clamp(1.2rem, 5vw, 2.2rem); text-decoration: none; font-weight: 800;">lion15.official1@gmail.com</a>
+                <p style="margin-top: 40px; font-size: 0.9rem; opacity: 0.5;">Lokalizacja: Polska / Remote</p>
             </div>
         </section>
 
         <footer>
-            &copy; 2025 Lion15 | lion15.official1@gmail.com
+            &copy; 2025 Lion15 Coding | Built for Excellence
         </footer>
     </div>
 
     <script>
+        // System podstron
         function showPage(pageId) {
-            // Ukryj wszystkie strony
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-
-            // Pokaż wybraną stronę
             document.getElementById(pageId).classList.add('active');
-
-            // Przewiń na górę
             window.scrollTo(0, 0);
         }
+
+        // Śledzenie myszki dla efektu światła
+        const blur = document.getElementById('cursor-blur');
+        document.addEventListener('mousemove', (e) => {
+            blur.style.left = e.clientX + 'px';
+            blur.style.top = e.clientY + 'px';
+        });
     </script>
 </body>
 </html>

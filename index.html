@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion15 | Coding & Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animowane kule w tle */
+        .circle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+        .circle-1 { width: 400px; height: 400px; background: rgba(255, 0, 150, 0.3); top: -10%; left: -5%; }
+        .circle-2 { width: 500px; height: 500px; background: rgba(0, 200, 255, 0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
+
+        @keyframes move { from { transform: translate(0, 0); } to { transform: translate(100px, 50px); } }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Nawigacja */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+        }
+        .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(to right, #fff, #00c8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; cursor: pointer; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links button { background: none; border: none; color: white; cursor: pointer; font-size: 1rem; opacity: 0.7; transition: 0.3s; }
+        .nav-links button:hover { opacity: 1; color: #00c8ff; }
+
+        /* Sekcje */
+        .page { display: none; animation: fadeIn 0.5s ease forwards; padding: 40px 0; }
+        .page.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 60px 40px;
+            margin-top: 20px;
+        }
+
+        h1, h2 { font-size: 3rem; margin-bottom: 20px; }
+        .highlight { color: #00c8ff; }
+
+        /* Plany - Cennik */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .plan {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .plan:hover { transform: scale(1.05); border-color: #00c8ff; background: rgba(255, 255, 255, 0.07); }
+        .plan h3 { font-size: 1.8rem; margin-bottom: 10px; color: #00c8ff; }
+        .price { font-size: 2.5rem; font-weight: 800; margin: 20px 0; }
+        .features-list { list-style: none; margin-bottom: 30px; text-align: left; opacity: 0.8; }
+        .features-list li { margin-bottom: 10px; }
+        .features-list li::before { content: "✓ "; color: #00c8ff; }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .cta-btn:hover { background: #00c8ff; color: #fff; box-shadow: 0 0 20px rgba(0, 200, 255, 0.5); }
+
+        footer { text-align: center; padding: 60px 0; opacity: 0.5; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+
+    <div class="container">
+        <nav>
+            <div class="logo" onclick="showPage('home')">Lion15</div>
+            <div class="nav-links">
+                <button onclick="showPage('home')">Start</button>
+                <button onclick="showPage('about')">O mnie</button>
+                <button onclick="showPage('pricing')">Plany</button>
+                <button onclick="showPage('contact')">Kontakt</button>
+            </div>
+        </nav>
+
+        <section id="home" class="page active">
+            <div class="glass-card" style="text-align: center;">
+                <h1>Lion15 <span class="highlight">Studio</span></h1>
+                <p style="font-size: 1.2rem; opacity: 0.8;">Projektowanie nowoczesnych stron internetowych, które robią różnicę.</p>
+                <br><br>
+                <button class="cta-btn" onclick="showPage('pricing')">Sprawdź ofertę</button>
+            </div>
+        </section>
+
+        <section id="about" class="page">
+            <div class="glass-card">
+                <h2>Kilka słów <span class="highlight">o mnie</span></h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.9;">
+                    Cześć! Jestem Lion15. Moja pasja to kodowanie i design. Specjalizuję się w tworzeniu stron, które nie tylko działają bezbłędnie, ale też wyglądają obłędnie. <br><br>
+                    Wierzę, że każda marka zasługuje na unikalną tożsamość w sieci. Dlatego w moich projektach stawiam na nowoczesne technologie, szybkość działania i estetykę premium. Nie robię "zwykłych" stron – robię projekty, które zapadają w pamięć.
+                </p>
+            </div>
+        </section>
+
+        <section id="pricing" class="page">
+            <h2 style="text-align: center;">Wybierz swój <span class="highlight">plan</span></h2>
+            <div class="pricing-grid">
+                <div class="plan">
+                    <h3>Landing Page</h3>
+                    <div class="price">od 10 zł do 500 zł</div>
+                    <ul class="features-list">
+                        <li>cena zależy od zaawansowania strony</li>
+                        <li>One-page design</li>
+                        <li>Pełna responsywność</li>
+                        <li>Podstawowe SEO</li>
+                        <li>Integracja Social Media</li>
+                    </ul>
+                    <a href="mailto:lion15.official1@gmail.com" class="cta-btn">Wybieram</a>
+                </div>
+                <div class="plan" style="border-color: #00c8ff;">
+                    <h3>Biznes PRO</h3>
+                    <div class="price">od 300 zł do 1000 zł</div>
+                    <ul class="features-list">
+                        <li>cena zależy od zaawansowania strony</li>
+                        <li>Wielostronicowa witryna</li>
+                        <li>Zaawansowane animacje</li>
+                        <li>System zarządzania (CMS)</li>
+                        <li>Optymalizacja szybkości</li>
+                    </ul>
+                    <a href="mailto:lion15.official1@gmail.com" class="cta-btn">Wybieram</a>
+                </div>
+                <div class="plan">
+                    <h3>Biznes Pro+</h3>
+                    <div class="price">od 600 zł do 2000 zł</div>
+                    <ul class="features-list">
+                        <li>cena zależy od zaawansowania strony</li>
+                        <li>Sklep internetowy</li>
+                        <li>Płatności online</li>
+                        <li>Panel administratora</li>
+                        <li>Wsparcie techniczne</li>
+                    </ul>
+                    <a href="mailto:lion15.official1@gmail.com" class="cta-btn">Wybieram</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page">
+            <div class="glass-card" style="text-align: center;">
+                <h2>Pogadajmy!</h2>
+                <p>Napisz do mnie na maila:</p>
+                <br>
+                <a href="mailto:lion15.official1@gmail.com" class="highlight" style="font-size: 2rem; text-decoration: none; font-weight: 800;">lion15.official1@gmail.com</a>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2025 Lion15 | lion15.official1@gmail.com
+        </footer>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Ukryj wszystkie strony
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Pokaż wybraną stronę
+            document.getElementById(pageId).classList.add('active');
+
+            // Przewiń na górę
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

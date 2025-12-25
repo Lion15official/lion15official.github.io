@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #0a0a0f;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    overflow-x: hidden;
+}
+
+/* TŁO LION15 */
+#cursor-blur {
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(0, 200, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    transition: 0.1s ease-out;
+}
+
+.circle {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -2;
+}
+.circle-1 { width: 300px; height: 300px; background: rgba(255, 0, 150, 0.08); top: 10%; left: 5%; }
+.circle-2 { width: 400px; height: 400px; background: rgba(0, 200, 255, 0.08); bottom: 10%; right: 5%; }
+
+/* KONTENER LISTY */
+.container {
+    width: 90%;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.text-inputs {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+
+.text-inputs:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(0, 200, 255, 0.3);
+}
+
+/* KOLOROWANIE SKŁADNI */
+.tag {
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.val {
+    color: #56b6c2;
+}
+
+.arrow {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.2rem;
+}
+
+.group { display: flex; gap: 10px; }
+
+/* STYL PÓL INPUT */
+input:not([type="submit"]):not([type="range"]):not([type="file"]) {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    outline: none;
+}
+
+input[type="range"] { accent-color: #00c8ff; width: 150px; }
+
+input[type="submit"] {
+    background: white;
+    color: black;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+    background: #00c8ff;
+    color: white;
+}
+
+input[type="color"] { 
+    width: 50px; 
+    height: 35px; 
+    padding: 2px; 
+    border: 1px solid rgba(255,255,255,0.2); 
+    background: #222; 
+    cursor: pointer;
+}
+
+/* NOWY STYL DLA PRZYCISKU FILE */
+input[type="file"] {
+    color: rgba(255, 255, 255, 0.5);
+    background: transparent;
+    border: none;
+}
+
+input[type="file"]::file-selector-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-right: 15px;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #00c8ff;
+    border-color: #00c8ff;
+}

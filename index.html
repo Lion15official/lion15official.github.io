@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
             cursor: default;
         }
 
-        /* Interaktywne światło za myszką */
+        /* Mouse tracking light */
         #cursor-blur {
             position: fixed;
             width: 400px;
@@ -35,7 +35,7 @@
             transition: 0.1s ease-out;
         }
 
-        /* Statyczne kule w tle */
+        /* Background animated circles */
         .circle {
             position: fixed;
             border-radius: 50%;
@@ -43,14 +43,14 @@
             z-index: -2;
             animation: move 20s infinite alternate;
         }
-        .circle-1 { width: 400px; height: 400px; background: rgba(255, 0, 150, 0.2); top: -10%; left: -5%; }
-        .circle-2 { width: 500px; height: 500px; background: rgba(0, 200, 255, 0.2); bottom: -10%; right: -5%; animation-delay: -5s; }
+        .circle-1 { width: 400px; height: 400px; background: rgba(255, 0, 150, 0.15); top: -10%; left: -5%; }
+        .circle-2 { width: 500px; height: 500px; background: rgba(0, 200, 255, 0.15); bottom: -10%; right: -5%; animation-delay: -5s; }
 
         @keyframes move { from { transform: translate(0, 0); } to { transform: translate(100px, 50px); } }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* Nawigacja */
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -62,7 +62,7 @@
         .nav-links button { background: none; border: none; color: white; cursor: pointer; font-size: 1rem; opacity: 0.7; transition: 0.3s; }
         .nav-links button:hover { opacity: 1; color: #00c8ff; }
 
-        /* Sekcje */
+        /* Pages System */
         .page { display: none; animation: fadeIn 0.5s ease forwards; padding: 40px 0; }
         .page.active { display: block; }
 
@@ -77,44 +77,74 @@
             margin-top: 20px;
         }
 
-        h1, h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px; }
+        h1, h2 { font-size: clamp(2.2rem, 6vw, 4rem); margin-bottom: 20px; font-weight: 800; }
         .highlight { color: #00c8ff; text-shadow: 0 0 15px rgba(0, 200, 255, 0.3); }
 
-        /* Plany - Cennik */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+        /* Tutorial Filtering */
+        .filter-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
         }
+        .filter-btn.active { background: #00c8ff; border-color: #00c8ff; box-shadow: 0 0 15px rgba(0, 200, 255, 0.4); }
+
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .tutorial-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 30px;
+            text-decoration: none;
+            color: white;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .tutorial-card:hover { transform: translateY(-10px); border-color: #00c8ff; background: rgba(255, 255, 255, 0.05); }
+        .tutorial-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .tutorial-card p { opacity: 0.6; font-size: 0.9rem; line-height: 1.5; }
+        .category-tag { font-size: 0.7rem; font-weight: 800; color: #00c8ff; text-transform: uppercase; margin-bottom: 10px; display: block; }
+
+        /* Pricing */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .plan {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 30px;
             padding: 40px;
             text-align: center;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s;
         }
-        .plan:hover { transform: translateY(-10px); border-color: #00c8ff; background: rgba(255, 255, 255, 0.05); }
-        .plan h3 { font-size: 1.8rem; margin-bottom: 10px; color: #00c8ff; }
+        .plan:hover { transform: translateY(-10px); border-color: #00c8ff; }
         .price { font-size: 2.5rem; font-weight: 800; margin: 20px 0; }
-        .features-list { list-style: none; margin-bottom: 30px; text-align: left; opacity: 0.8; font-size: 0.95rem; }
-        .features-list li { margin-bottom: 12px; }
+        .features-list { list-style: none; margin-bottom: 30px; text-align: left; opacity: 0.7; }
+        .features-list li { margin-bottom: 12px; font-size: 0.9rem; }
         .features-list li::before { content: "✦ "; color: #00c8ff; }
 
         .cta-btn {
             display: inline-block;
-            padding: 12px 35px;
+            padding: 14px 40px;
             background: #fff;
             color: #000;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             transition: 0.3s;
             border: none;
             cursor: pointer;
         }
-        .cta-btn:hover { background: #00c8ff; color: #fff; box-shadow: 0 0 20px rgba(0, 200, 255, 0.5); transform: scale(1.05); }
+        .cta-btn:hover { background: #00c8ff; color: #fff; box-shadow: 0 0 25px rgba(0, 200, 255, 0.5); transform: scale(1.05); }
 
         footer { text-align: center; padding: 60px 0; opacity: 0.4; font-size: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 50px; }
     </style>
@@ -129,79 +159,111 @@
         <nav>
             <div class="logo" onclick="showPage('home')">Lion15</div>
             <div class="nav-links">
-                <button onclick="showPage('home')">Start</button>
-                <button onclick="showPage('about')">O mnie</button>
-                <button onclick="showPage('pricing')">Plany</button>
-                <button onclick="showPage('contact')">Kontakt</button>
+                <button onclick="showPage('home')">Home</button>
+                <button onclick="showPage('tutorials')">Tutorials</button>
+                <button onclick="showPage('about')">About</button>
+                <button onclick="showPage('pricing')">Plans</button>
+                <button onclick="showPage('contact')">Contact</button>
             </div>
         </nav>
 
         <section id="home" class="page active">
             <div class="glass-card" style="text-align: center;">
                 <h1>Lion15 <span class="highlight">Studio</span></h1>
-                <p style="font-size: 1.2rem; opacity: 0.8; max-width: 600px; margin: 0 auto;">Tworzę nowoczesne strony internetowe, które przyciągają uwagę i budują zaufanie Twoich klientów.</p>
+                <p style="font-size: 1.2rem; opacity: 0.7; max-width: 600px; margin: 0 auto;">Crafting modern web experiences with clean code and cutting-edge design.</p>
                 <br><br>
-                <button class="cta-btn" onclick="showPage('pricing')">Sprawdź moje plany</button>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <button class="cta-btn" onclick="showPage('tutorials')">View Tutorials</button>
+                    <button class="cta-btn" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);" onclick="showPage('pricing')">See Plans</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutorials" class="page">
+            <h2 style="text-align: center;">Learning <span class="highlight">Center</span></h2>
+            <div class="filter-menu">
+                <button class="filter-btn active" onclick="filterTutorials('all')">All</button>
+                <button class="filter-btn" onclick="filterTutorials('html')">HTML</button>
+                <button class="filter-btn" onclick="filterTutorials('css')">CSS</button>
+            </div>
+
+            <div class="tutorial-grid">
+                <a href="input-types.html" class="tutorial-card html-item">
+                    <div>
+                        <span class="category-tag">HTML Tutorial</span>
+                        <h3>Input Types Mastery</h3>
+                        <p>Learn how to use all 12 input types correctly, from text fields to professional file selectors.</p>
+                    </div>
+                    <p style="margin-top: 20px; color: #00c8ff; font-weight: 700;">Start Learning &rarr;</p>
+                </a>
+
+                <a href="how-to-button-is-css.html" class="tutorial-card css-item">
+                    <div>
+                        <span class="category-tag">CSS Tutorial</span>
+                        <h3>Modern Button Design</h3>
+                        <p>Create high-end buttons with glassmorphism effects, glows, and smooth hover animations.</p>
+                    </div>
+                    <p style="margin-top: 20px; color: #00c8ff; font-weight: 700;">Start Learning &rarr;</p>
+                </a>
             </div>
         </section>
 
         <section id="about" class="page">
             <div class="glass-card">
-                <h2>Kilka słów <span class="highlight">o mnie</span></h2>
-                <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.9;">
-                    Cześć! Jestem <strong>Lion15</strong>. Specjalizuję się w projektowaniu nowoczesnych stron internetowych. 
-                    Moja filozofia jest prosta: strona musi być nie tylko funkcjonalna, ale przede wszystkim **piękna**. <br><br>
-                    Wykorzystuję najnowsze trendy, takie jak Glassmorphism i interaktywne animacje, aby każda witryna, którą stworzę, wyróżniała się na tle konkurencji. Stawiam na czysty kod, szybkość i unikalny design.
+                <h2>Who is <span class="highlight">Lion15?</span></h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.8;">
+                    Hi! I'm <strong>Lion15</strong>. I specialize in designing and developing modern websites. 
+                    My philosophy is simple: a website must be both functional and **beautiful**. <br><br>
+                    I use the latest trends like Glassmorphism and interactive animations to ensure every project stands out. I focus on clean code, speed, and unique user experiences.
                 </p>
             </div>
         </section>
 
         <section id="pricing" class="page">
-            <h2 style="text-align: center; margin-bottom: 10px;">Plany <span class="highlight">stron</span></h2>
-            <p style="text-align: center; opacity: 0.6; margin-bottom: 40px;">Wybierz rozwiązanie idealne dla Twoich potrzeb</p>
+            <h2 style="text-align: center;">Pricing <span class="highlight">Plans</span></h2>
             <div class="pricing-grid">
                 <div class="plan">
                     <h3>Landing Page</h3>
-                    <div class="price">od 10zł</div>
+                    <div class="price">from 10$</div>
                     <ul class="features-list">
-                        <li>Nowoczesny design (One-page)</li>
-                        <li>Pełna responsywność (Mobile)</li>
-                        <li>Podstawowa optymalizacja SEO</li>
-                        <li>Formularz kontaktowy</li>
+                        <li>Modern One-Page Design</li>
+                        <li>Fully Responsive (Mobile)</li>
+                        <li>Basic SEO Optimization</li>
+                        <li>Contact Form Integration</li>
                     </ul>
-                    <button class="cta-btn" onclick="showPage('contact')">Zamawiam</button>
+                    <button class="cta-btn" onclick="showPage('contact')">Order Now</button>
                 </div>
-                <div class="plan" style="border-color: rgba(0, 200, 255, 0.4); background: rgba(0, 200, 255, 0.03);">
-                    <h3>Biznes PRO</h3>
-                    <div class="price">od 100zł</div>
+                <div class="plan" style="border-color: rgba(0, 200, 255, 0.4); background: rgba(0, 200, 255, 0.05);">
+                    <h3>Business PRO</h3>
+                    <div class="price">from 100$</div>
                     <ul class="features-list">
-                        <li>Wielostronicowa witryna</li>
-                        <li>Zaawansowane efekty wizualne</li>
-                        <li>System zarządzania treścią</li>
-                        <li>Szybkość ładowania < 1s</li>
+                        <li>Multi-Page Website</li>
+                        <li>Advanced Visual Effects</li>
+                        <li>CMS Integration</li>
+                        <li>Ultra-Fast Loading Speed</li>
                     </ul>
-                    <button class="cta-btn" onclick="showPage('contact')">Zamawiam</button>
+                    <button class="cta-btn" onclick="showPage('contact')">Order Now</button>
                 </div>
                 <div class="plan">
                     <h3>E-Commerce</h3>
-                    <div class="price">do ustalenia</div>
+                    <div class="price">Custom</div>
                     <ul class="features-list">
-                        <li>Sklep internetowy</li>
-                        <li>Płatności</li>
-                        <li>Panel zarządzania produktami</li>
-                        <li>Szkolenie z obsługi</li>
+                        <li>Full Online Store</li>
+                        <li>Payment Gateway Setup</li>
+                        <li>Product Management Panel</li>
+                        <li>Staff Training Included</li>
                     </ul>
-                    <button class="cta-btn" onclick="showPage('contact')">Zamawiam</button>
+                    <button class="cta-btn" onclick="showPage('contact')">Order Now</button>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="page">
             <div class="glass-card" style="text-align: center;">
-                <h2>Zrealizujmy <span class="highlight">Twój projekt</span></h2>
-                <p style="margin-bottom: 30px;">Wyślij zapytanie, a odpowiem w ciągu 24h.</p>
+                <h2>Start Your <span class="highlight">Project</span></h2>
+                <p style="margin-bottom: 30px;">Send an inquiry and I'll get back to you within 24h.</p>
                 <a href="mailto:lion15.official1@gmail.com" class="highlight" style="font-size: clamp(1.2rem, 5vw, 2.2rem); text-decoration: none; font-weight: 800;">lion15.official1@gmail.com</a>
-                <p style="margin-top: 40px; font-size: 0.9rem; opacity: 0.5;">Lokalizacja: Polska / Remote</p>
+                <p style="margin-top: 40px; font-size: 0.9rem; opacity: 0.5;">Location: Poland / Remote</p>
             </div>
         </section>
 
@@ -211,7 +273,7 @@
     </div>
 
     <script>
-        // System podstron
+        // Page Navigation System
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
@@ -219,7 +281,28 @@
             window.scrollTo(0, 0);
         }
 
-        // Śledzenie myszki dla efektu światła
+        // Tutorial Filtering Logic
+        function filterTutorials(category) {
+            const htmlItems = document.querySelectorAll('.html-item');
+            const cssItems = document.querySelectorAll('.css-item');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if(category === 'all') {
+                htmlItems.forEach(i => i.style.display = 'flex');
+                cssItems.forEach(i => i.style.display = 'flex');
+            } else if(category === 'html') {
+                htmlItems.forEach(i => i.style.display = 'flex');
+                cssItems.forEach(i => i.style.display = 'none');
+            } else if(category === 'css') {
+                htmlItems.forEach(i => i.style.display = 'none');
+                cssItems.forEach(i => i.style.display = 'flex');
+            }
+        }
+
+        // Mouse Tracker
         const blur = document.getElementById('cursor-blur');
         document.addEventListener('mousemove', (e) => {
             blur.style.left = e.clientX + 'px';

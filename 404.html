@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Lion15 Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #05070a;
+            --card-bg: #0d1117;
+            --cyan: #00d4ff;
+            --text-gray: #8b949e;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Blobs w tle jak na Coming Soon */
+        .error-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, rgba(5,7,10,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        /* Styl karty identyczny jak na Zdj 1 */
+        .error-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 32px;
+            padding: 60px 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .error-code {
+            font-size: 100px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff, #444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Szklany komunikat z czarnym tekstem (Zdj 2 / Twoja prośba) */
+        .glass-error-msg {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 40px;
+        }
+
+        .glass-error-msg p {
+            color: #000000; /* Czarny tekst */
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Przycisk powrotu (Styl Zdj 1) */
+        .btn-home {
+            background-color: white;
+            color: black;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-home:hover {
+            background-color: var(--cyan);
+            transform: scale(1.05);
+        }
+
+        .cyan-text { color: var(--cyan); }
+    </style>
+</head>
+<body>
+
+    <div class="error-blob"></div>
+
+    <div class="container">
+        <div class="error-card">
+            <div class="error-code">404</div>
+            <h2>Oops! Lost in <span class="cyan-text">Space</span></h2>
+            
+            <div class="glass-error-msg">
+                <p>ERROR: PAGE NOT FOUND</p>
+            </div>
+
+            <p style="color: var(--text-gray); margin-bottom: 30px;">The page you are looking for doesn't exist or has been moved to another dimension.</p>
+            
+            <a href="index.html" class="btn-home">Back to Safety</a>
+        </div>
+    </div>
+
+</body>
+</html>

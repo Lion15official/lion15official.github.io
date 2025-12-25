@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Structure | Lion15 Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dodatkowe style pomocnicze dla tej lekcji */
+        .semantic-box {
+            border: 1px dashed rgba(0, 204, 255, 0.3);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 15px;
+            position: relative;
+        }
+        .semantic-label {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #05070A;
+            padding: 0 10px;
+            font-size: 10px;
+            color: var(--cyan);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="blob-container">
+        <div class="blob blob-1" style="top: 20%; left: 70%;"></div>
+        <div class="blob blob-2" style="bottom: 10%; left: 10%;"></div>
+    </div>
+
+    <main class="container">
+        <header class="main-header">
+            <a href="index.html" class="btn-start" style="margin-bottom: 20px; display: inline-block;">← Back</a>
+            <h1>Semantic <span class="cyan-text">Structure</span></h1>
+            <p class="subtext">Stop using &lt;div&gt; for everything. Use meaningful tags for better accessibility and SEO.</p>
+        </header>
+
+        <section class="courses-grid">
+            <div class="course-card">
+                <span class="category-tag">Theory</span>
+                <h3>Why Semantics?</h3>
+                <p class="subtext">Semantic HTML elements clearly describe their meaning in a human- and machine-readable way. Instead of a generic div, we use tags that tell the browser exactly what the content is.</p>
+            </div>
+
+            <div class="course-card">
+                <span class="category-tag">Visual Map</span>
+                <h3>Standard Layout</h3>
+                
+                <div class="semantic-box">
+                    <span class="semantic-label">&lt;header&gt;</span>
+                    <p style="font-size: 12px;">Logo and Navigation</p>
+                </div>
+
+                <div class="semantic-box" style="border-style: solid; border-color: var(--cyan);">
+                    <span class="semantic-label">&lt;main&gt;</span>
+                    <p style="font-size: 12px; margin-bottom: 10px;">Primary content of the page</p>
+                    
+                    <div class="semantic-box" style="margin-left: 20px;">
+                        <span class="semantic-label">&lt;section&gt;</span>
+                        <p style="font-size: 11px;">A thematic grouping of content</p>
+                    </div>
+
+                    <div class="semantic-box" style="margin-left: 20px;">
+                        <span class="semantic-label">&lt;article&gt;</span>
+                        <p style="font-size: 11px;">Independent, self-contained content</p>
+                    </div>
+                </div>
+
+                <div class="semantic-box">
+                    <span class="semantic-label">&lt;footer&gt;</span>
+                    <p style="font-size: 12px;">Copyright and Links</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="course-card" style="margin-top: 30px;">
+            <span class="category-tag">Reference Table</span>
+            <div style="overflow-x: auto; margin-top: 20px;">
+                <table style="width: 100%; text-align: left; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <th style="padding: 15px; color: var(--cyan);">Tag</th>
+                            <th style="padding: 15px; color: var(--cyan);">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 15px;"><code>&lt;nav&gt;</code></td>
+                            <td style="padding: 15px;" class="subtext">Container for navigation links.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 15px;"><code>&lt;aside&gt;</code></td>
+                            <td style="padding: 15px;" class="subtext">Content indirectly related to the main content (sidebar).</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 15px;"><code>&lt;figure&gt;</code></td>
+                            <td style="padding: 15px;" class="subtext">Self-contained content, like images or diagrams.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

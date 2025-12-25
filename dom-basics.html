@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation | Lion15 Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .demo-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .code-block {
+            background: #0d1117;
+            padding: 15px;
+            border-radius: 12px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            color: #79c0ff;
+            text-align: left;
+            margin: 15px 0;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .js-keyword { color: #ff7b72; }
+        .js-func { color: #d2a8ff; }
+        .js-string { color: #a5d6ff; }
+
+        .active-glow {
+            border-color: var(--cyan);
+            box-shadow: var(--glow-effect);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2" style="bottom: -10%; right: -10%;"></div>
+    </div>
+
+    <main class="container">
+        <header class="main-header">
+            <a href="index.html" class="btn-start" style="margin-bottom: 30px; display: inline-block;">← Back to Academy</a>
+            <h1>DOM <span class="cyan-text">Manipulation</span></h1>
+            <p class="subtext">JavaScript is the brain of your website. Learn how to select elements and change them on the fly.</p>
+        </header>
+
+        <section class="course-card" style="margin-bottom: 30px;">
+            <span class="category-tag">Lesson 1</span>
+            <h3>Selecting Elements</h3>
+            <p class="subtext">Before you change something, you must find it. Use <code>document.getElementById()</code> to target specific parts of your page.</p>
+            
+            <div class="code-block">
+                <span class="js-keyword">const</span> title = <span class="js-func">document.getElementById</span>(<span class="js-string">'my-title'</span>);
+            </div>
+        </section>
+
+        <section class="course-card">
+            <span class="category-tag">Live Demo</span>
+            <h3>Change Styles with JS</h3>
+            <p class="subtext">Click the buttons below to see JavaScript interacting with the DOM in real-time.</p>
+
+            <div id="target-box" class="demo-box" style="margin-top: 20px;">
+                <h2 id="demo-heading">I am a static heading</h2>
+                <p id="demo-text" class="subtext">JavaScript can change my content and style.</p>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 25px; flex-wrap: wrap;">
+                <button class="filter-btn" onclick="changeContent()">Change Text</button>
+                <button class="filter-btn" onclick="toggleGlow()">Toggle Glow Effect</button>
+                <button class="filter-btn" onclick="resetDemo()">Reset</button>
+            </div>
+
+            <div class="code-block" id="js-code-display">
+                <span class="js-comment">// Click a button to see the code here...</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const heading = document.getElementById('demo-heading');
+        const box = document.getElementById('target-box');
+        const codeDisplay = document.getElementById('js-code-display');
+
+        function changeContent() {
+            heading.innerText = "Hello from JavaScript!";
+            heading.style.color = "#00CCFF";
+            codeDisplay.innerHTML = `<span class="js-keyword">element</span>.innerText = <span class="js-string">"Hello from JavaScript!"</span>;`;
+        }
+
+        function toggleGlow() {
+            box.classList.toggle('active-glow');
+            codeDisplay.innerHTML = `<span class="js-keyword">element</span>.classList.<span class="js-func">toggle</span>(<span class="js-string">'active-glow'</span>);`;
+        }
+
+        function resetDemo() {
+            heading.innerText = "I am a static heading";
+            heading.style.color = "white";
+            box.classList.remove('active-glow');
+            codeDisplay.innerHTML = `<span class="js-comment">// Demo has been reset.</span>`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Flexbox | Lion15 Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Style pomocnicze dla demonstracji Flexboxa */
+        .flex-container-demo {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed var(--cyan);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex; /* To włącza Flexboxa! */
+            min-height: 150px;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .flex-item {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-weight: bold;
+            box-shadow: var(--glow-effect);
+        }
+
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .code-block {
+            background: #0d1117;
+            padding: 15px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #79c0ff;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="blob-container">
+        <div class="blob blob-1" style="left: 70%; top: -10%;"></div>
+        <div class="blob blob-2" style="left: -10%; bottom: -10%;"></div>
+    </div>
+
+    <main class="container">
+        <header class="main-header">
+            <a href="index.html" class="btn-start" style="margin-bottom: 30px; display: inline-block;">← Back to Academy</a>
+            <h1>Mastering <span class="cyan-text">Flexbox</span></h1>
+            <p class="subtext">The ultimate CSS layout tool. Control alignment, spacing, and order with just a few lines of code.</p>
+        </header>
+
+        <section class="course-card" style="margin-bottom: 30px;">
+            <span class="category-tag">Concept 1</span>
+            <h3>Justify Content (Horizontal)</h3>
+            <p class="subtext">This property aligns items along the <b>main axis</b> (usually left-to-right).</p>
+            
+            <div id="justify-demo" class="flex-container-demo" style="justify-content: center;">
+                <div class="flex-item">1</div>
+                <div class="flex-item" style="background: var(--cyan);">2</div>
+                <div class="flex-item">3</div>
+            </div>
+
+            <div class="controls">
+                <button class="filter-btn" onclick="updateFlex('justify-demo', 'justifyContent', 'flex-start')">flex-start</button>
+                <button class="filter-btn active" onclick="updateFlex('justify-demo', 'justifyContent', 'center')">center</button>
+                <button class="filter-btn" onclick="updateFlex('justify-demo', 'justifyContent', 'flex-end')">flex-end</button>
+                <button class="filter-btn" onclick="updateFlex('justify-demo', 'justifyContent', 'space-between')">space-between</button>
+                <button class="filter-btn" onclick="updateFlex('justify-demo', 'justifyContent', 'space-around')">space-around</button>
+            </div>
+            
+            <div class="code-block" id="justify-code">justify-content: center;</div>
+        </section>
+
+        <section class="course-card">
+            <span class="category-tag">Concept 2</span>
+            <h3>Align Items (Vertical)</h3>
+            <p class="subtext">This property aligns items along the <b>cross axis</b> (top-to-bottom).</p>
+            
+            <div id="align-demo" class="flex-container-demo" style="align-items: center;">
+                <div class="flex-item">1</div>
+                <div class="flex-item" style="height: 100px; background: var(--cyan);">2</div>
+                <div class="flex-item" style="height: 40px;">3</div>
+            </div>
+
+            <div class="controls">
+                <button class="filter-btn" onclick="updateFlex('align-demo', 'alignItems', 'flex-start')">flex-start</button>
+                <button class="filter-btn active" onclick="updateFlex('align-demo', 'alignItems', 'center')">center</button>
+                <button class="filter-btn" onclick="updateFlex('align-demo', 'alignItems', 'flex-end')">flex-end</button>
+                <button class="filter-btn" onclick="updateFlex('align-demo', 'alignItems', 'stretch')">stretch</button>
+            </div>
+            
+            <div class="code-block" id="align-code">align-items: center;</div>
+        </section>
+
+        <section class="course-card" style="margin-top: 40px; border-color: var(--cyan);">
+            <span class="category-tag">Pro Tip</span>
+            <h3>The Ultimate Centering Trick</h3>
+            <p class="subtext">To center any element perfectly in the middle of a container, use this magic combo:</p>
+            <div class="code-block" style="text-align: left; color: #e6edf3;">
+                display: <span style="color: #a5d6ff;">flex;</span><br>
+                justify-content: <span style="color: #a5d6ff;">center;</span><br>
+                align-items: <span style="color: #a5d6ff;">center;</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function updateFlex(containerId, property, value) {
+            const container = document.getElementById(containerId);
+            container.style[property] = value;
+            
+            // Update code display
+            const codeId = containerId === 'justify-demo' ? 'justify-code' : 'align-code';
+            const cssProp = property === 'justifyContent' ? 'justify-content' : 'align-items';
+            document.getElementById(codeId).innerText = `${cssProp}: ${value};`;
+
+            // Update button styles
+            const buttons = event.target.parentElement.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

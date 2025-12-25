@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Glow Buttons | Lion15 Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Styles specific to this lesson --- */
+        .demo-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        /* Step-by-step preview styles */
+        .preview-box {
+            margin-top: 25px;
+            padding: 30px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .step-2-btn {
+            transition: 0.3s;
+            box-shadow: 0px 0px 15px rgba(0, 204, 255, 0.3);
+        }
+
+        .step-2-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 0px 25px rgba(0, 204, 255, 0.8);
+            background: #ffffff;
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            background: #0d1117;
+            padding: 20px;
+            border-radius: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            color: #e6edf3;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+        .code-keyword { color: #ff7b72; }
+        .code-prop { color: #79c0ff; }
+        .code-val { color: #a5d6ff; }
+        .code-comment { color: #8b949e; }
+    </style>
+</head>
+<body>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2" style="bottom: -10%; right: -10%;"></div>
+    </div>
+
+    <main class="container">
+        <header class="main-header">
+            <a href="index.html" class="btn-start" style="margin-bottom: 30px; display: inline-block;">← Back to Academy</a>
+            <h1>Premium <span class="cyan-text">Glow Buttons</span></h1>
+            <p class="subtext">Learn the secret behind the "Lion15" interaction design: shadows, transitions, and movement.</p>
+        </header>
+
+        <section class="course-card" style="margin-bottom: 40px;">
+            <span class="category-tag">Live Showcase</span>
+            <h3 style="margin-top: 10px;">The Final Effect</h3>
+            <div class="demo-area">
+                <button class="btn-start">Standard Action</button>
+                <button class="btn-start" style="box-shadow: var(--glow-effect); border: 1px solid var(--cyan);">Primary Glow</button>
+                <button class="filter-btn" style="border-color: var(--cyan); color: var(--cyan);">Ghost Glow</button>
+            </div>
+        </section>
+
+        <div class="courses-grid">
+            <div class="course-card">
+                <span class="category-tag">Step 1</span>
+                <h3>Static Glow</h3>
+                <p class="subtext">We use <code>box-shadow</code> to create a soft light around the button. The key is using <code>rgba</code> for transparency.</p>
+                
+                <div class="code-block">
+                    <span class="code-prop">box-shadow</span>: <span class="code-val">0 0 20px rgba(0, 204, 255, 0.4)</span>;
+                </div>
+
+                <div class="preview-box">
+                    <button class="btn-start" style="box-shadow: 0 0 20px rgba(0, 204, 255, 0.4); pointer-events: none;">
+                        Static Shadow
+                    </button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <span class="category-tag">Step 2</span>
+                <h3>Hover & Motion</h3>
+                <p class="subtext">By adding <code>transition</code> and <code>translateY</code>, the button feels alive when the user interacts with it.</p>
+                
+                <div class="code-block">
+                    <span class="code-prop">transition</span>: <span class="code-val">0.3s ease</span>; <br>
+                    <span class="code-prop">transform</span>: <span class="code-val">translateY(-5px)</span>;
+                </div>
+
+                <div class="preview-box">
+                    <button class="btn-start step-2-btn">
+                        Hover Me Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            
+        </div>
+
+        <section class="course-card" style="margin-top: 40px;">
+            <span class="category-tag">Master Class</span>
+            <h3 style="margin-top: 10px;">The Complete CSS Code</h3>
+            <p class="subtext">Copy this to your <code>style.css</code> to use it anywhere.</p>
+            
+            <div class="code-block">
+                <span class="code-comment">/* The Base Button Style */</span><br>
+                <span class="code-keyword">.btn-premium</span> {<br>
+                &nbsp;&nbsp;<span class="code-prop">background</span>: <span class="code-val">#ffffff</span>;<br>
+                &nbsp;&nbsp;<span class="code-prop">color</span>: <span class="code-val">#000000</span>;<br>
+                &nbsp;&nbsp;<span class="code-prop">padding</span>: <span class="code-val">12px 25px</span>;<br>
+                &nbsp;&nbsp;<span class="code-prop">border-radius</span>: <span class="code-val">25px</span>;<br>
+                &nbsp;&nbsp;<span class="code-prop">font-weight</span>: <span class="code-val">700</span>;<br>
+                &nbsp;&nbsp;<span class="code-prop">transition</span>: <span class="code-val">all 0.3s cubic-bezier(0.4, 0, 0.2, 1)</span>;<br>
+                }<br><br>
+                <span class="code-comment">/* The Glow Interaction */</span><br>
+                <span class="code-keyword">.btn-premium:hover</span> {<br>
+                &nbsp;&nbsp;<span class="code-prop">transform</span>: <span class="code-val">translateY(-3px)</span>;<br>
+                &nbsp;&nbsp;<span class="code-prop">box-shadow</span>: <span class="code-val">0px 10px 30px rgba(0, 204, 255, 0.5)</span>;<br>
+                &nbsp;&nbsp;<span class="code-prop">border</span>: <span class="code-val">1px solid #00CCFF</span>;<br>
+                }
+            </div>
+        </section>
+
+        <div style="margin-top: 40px; padding-bottom: 60px;">
+            <p class="subtext">Next lesson: <strong>Flexbox Mastery</strong></p>
+            <a href="flexbox-mastery.html" class="btn-start" style="background: var(--cyan); box-shadow: var(--glow-effect);">Continue Learning →</a>
+        </div>
+    </main>
+</body>
+</html>

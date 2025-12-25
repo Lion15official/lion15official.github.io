@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods | Lion15 Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styl wizualizacji tablicy */
+        .array-visualizer {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .array-items-wrapper {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .array-item {
+            background: white;
+            color: black;
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: var(--glow-effect);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .code-block {
+            background: #0d1117;
+            padding: 20px;
+            border-radius: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            color: #e6edf3;
+            text-align: left;
+            margin-top: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .js-func { color: #d2a8ff; }
+        .js-comment { color: #8b949e; }
+
+        .method-card {
+            border-bottom: 2px solid transparent;
+        }
+        .method-card:hover {
+            border-bottom: 2px solid var(--cyan);
+        }
+    </style>
+</head>
+<body>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2" style="bottom: -10%; right: -10%;"></div>
+    </div>
+
+    <main class="container">
+        <header class="main-header">
+            <a href="index.html" class="btn-start" style="margin-bottom: 30px; display: inline-block;">← Back to Academy</a>
+            <h1>Array <span class="cyan-text">Methods</span></h1>
+            <p class="subtext">Watch how JavaScript transforms data in real-time. Click the buttons to run the code.</p>
+        </header>
+
+        <section class="course-card">
+            <span class="category-tag">Live Preview</span>
+            <h3 style="margin-top:10px;">Current Numbers Array</h3>
+            <div class="array-visualizer">
+                <div id="array-container" class="array-items-wrapper">
+                    </div>
+                <p id="status-text" class="subtext">Ready to process data...</p>
+                <button class="btn-start" style="margin-top: 10px; font-size: 12px; padding: 8px 15px;" onclick="resetArray()">Reset Array</button>
+            </div>
+        </section>
+
+        
+
+        <div class="courses-grid" style="margin-top: 40px;">
+            
+            <div class="course-card method-card">
+                <span class="category-tag">Transform</span>
+                <h3>.map()</h3>
+                <p class="subtext">Multiplies every number by 2.</p>
+                <div class="code-block">
+                    numbers.<span class="js-func">map</span>(n => n * 2);
+                </div>
+                <button class="filter-btn" style="margin-top: 20px; width: 100%;" onclick="runMap()">Run Map</button>
+            </div>
+
+            <div class="course-card method-card">
+                <span class="category-tag">Selection</span>
+                <h3>.filter()</h3>
+                <p class="subtext">Keeps only numbers greater than 30.</p>
+                <div class="code-block">
+                    numbers.<span class="js-func">filter</span>(n => n > 30);
+                </div>
+                <button class="filter-btn" style="margin-top: 20px; width: 100%;" onclick="runFilter()">Run Filter</button>
+            </div>
+
+            <div class="course-card method-card">
+                <span class="category-tag">Calculation</span>
+                <h3>.reduce()</h3>
+                <p class="subtext">Sums all numbers into one total.</p>
+                <div class="code-block">
+                    numbers.<span class="js-func">reduce</span>((a, b) => a + b);
+                </div>
+                <button class="filter-btn" style="margin-top: 20px; width: 100%;" onclick="runReduce()">Run Reduce</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Dane początkowe
+        const initialNumbers = [10, 25, 40, 55];
+        let currentNumbers = [...initialNumbers];
+
+        // Funkcja wyświetlająca klocki
+        function renderArray() {
+            const container = document.getElementById('array-container');
+            container.innerHTML = '';
+            
+            currentNumbers.forEach((num, index) => {
+                const item = document.createElement('div');
+                item.className = 'array-item';
+                item.innerText = num;
+                // Mała animacja pojawiania się
+                item.style.transitionDelay = `${index * 0.1}s`;
+                container.appendChild(item);
+            });
+        }
+
+        // Akcja MAP
+        function runMap() {
+            currentNumbers = currentNumbers.map(n => n * 2);
+            renderArray();
+            updateStatus("Values doubled using .map()");
+        }
+
+        // Akcja FILTER
+        function runFilter() {
+            currentNumbers = currentNumbers.filter(n => n > 30);
+            renderArray();
+            updateStatus("Filtered: Only numbers > 30 remain.");
+        }
+
+        // Akcja REDUCE
+        function runReduce() {
+            const sum = currentNumbers.reduce((a, b) => a + b, 0);
+            // Dla reduce pokazujemy wynik specjalnie
+            const container = document.getElementById('array-container');
+            container.innerHTML = `<div class="array-item" style="background:var(--cyan); border-radius: 50%; width: 100px; height: 100px; display:flex; align-items:center; justify-content:center;">${sum}</div>`;
+            updateStatus(`Reduced! Total sum is ${sum}.`);
+        }
+
+        // Reset
+        function resetArray() {
+            currentNumbers = [...initialNumbers];
+            renderArray();
+            updateStatus("Array reset to original values.");
+        }
+
+        function updateStatus(msg) {
+            document.getElementById('status-text').innerText = msg;
+            document.getElementById('status-text').style.color = "var(--cyan)";
+        }
+
+        // Start
+        renderArray();
+    </script>
+</body>
+</html>

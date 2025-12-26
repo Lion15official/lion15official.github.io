@@ -26,12 +26,6 @@ const courses = [
         description: "The ultimate guide to centering and aligning elements like a pro.",
         link: "flexbox-mastery.html"
     },
-    {
-        title: "Glassmorphism UI",
-        category: "css",
-        description: "The art of Frosted Glass using only CSS filters.",
-        link: "coming-soon.html"
-    },
     // JS CATEGORY
     {
         title: "DOM Manipulation",
@@ -44,6 +38,12 @@ const courses = [
         category: "js",
         description: "Master map, filter, and reduce to handle data efficiently.",
         link: "arrays.html"
+    },
+    {
+        title: "Data Persistence",
+        category: "js",
+        description: "Master map, filter, and reduce to handle data efficiently.",
+        link: "js-storage.html"
     }
 ];
 

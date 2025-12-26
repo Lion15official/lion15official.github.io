@@ -42,7 +42,7 @@ const courses = [
     {
         title: "Data Persistence",
         category: "js",
-        description: "Master map, filter, and reduce to handle data efficiently.",
+        description: "Master LocalStorage to save user preferences and maintain app state permanently.",
         link: "js-storage.html"
     }
 ];
@@ -80,3 +80,4 @@ function filterCourses(category) {
 
 // Initial render
 renderCourses();
+

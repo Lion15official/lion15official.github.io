@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Storage Mastery | Lion15 Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --bg: #05070a; --cyan: #00d4ff; --card: #0d1117; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; padding: 20px; }
+        
+        /* Kolorowanie kodu */
+        .c-keyword { color: #ff7b72; } 
+        .c-func { color: #d2a8ff; }    
+        .c-str { color: #a5d6ff; }     
+        .c-comment { color: #8b949e; }
+
+        /* Szklane elementy - TERAZ Z BIAŁYM TEKSTEM */
+        .glass-box {
+            background: rgba(255, 255, 255, 0.05); /* Bardzo lekka biel */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-box h4 { 
+            color: var(--cyan) !important; /* Nagłówek pro-tipa na cyjanowo dla akcentu */
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .glass-box p { 
+            color: #ffffff !important; /* Tekst na biało */
+            font-weight: 400;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .code-block {
+            background: #0d1117;
+            padding: 20px;
+            border-radius: 15px;
+            font-family: 'Consolas', monospace;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin: 15px 0;
+        }
+
+        .btn-start { 
+            background: white; 
+            color: black; 
+            padding: 12px 30px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+        <header style="text-align: center; padding: 40px 0;">
+            <a href="index.html" class="btn-start" style="margin-bottom: 20px;">← Back</a>
+            <h1>Data <span style="color: var(--cyan);">Persistence</span></h1>
+        </header>
+
+        <div class="course-card" style="background: var(--card); padding: 30px; border-radius: 24px;">
+            <span style="color: var(--cyan); font-size: 12px; font-weight: bold;">STEP 01</span>
+            <h3 style="margin: 10px 0;">The setItem Method</h3>
+            
+            <div class="code-block">
+                <span class="c-keyword">localStorage</span>.<span class="c-func">setItem</span>(<span class="code-css-val">'theme'</span>, <span class="code-css-val">'dark'</span>);
+            </div>
+
+            <div class="glass-box">
+                <h4>Pro Tip</h4>
+                <p>LocalStorage keeps data even after the browser is closed. It's perfect for saving user preferences like Dark Mode or Language!</p>
+            </div>
+        </div>
+
+        <div class="course-card" style="background: var(--card); padding: 30px; border-radius: 24px; margin-top: 20px;">
+            <span style="color: var(--cyan); font-size: 12px; font-weight: bold;">STEP 02</span>
+            <h3 style="margin: 10px 0;">The getItem Method</h3>
+            
+            <div class="code-block">
+                <span class="c-keyword">const</span> currentTheme = <span class="c-keyword">localStorage</span>.<span class="c-func">getItem</span>(<span class="code-css-val">'theme'</span>);
+            </div>
+
+            <div class="glass-box">
+                <h4>Important</h4>
+                <p>Always remember that LocalStorage only stores <b>strings</b>. If you want to store an object, you must use JSON.stringify() first.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
